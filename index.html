@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habbo Diagonal Font</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Habbo Diagonal Font Generator</h1>
+
+        <div class="input-group">
+            <label for="textInput">Digite o texto:</label>
+            <input type="text" id="textInput" placeholder="Ex: habbo" value="habbo hotel">
+        </div>
+
+        <button onclick="generateDiagonal()">Gerar Diagonal</button>
+
+        <div id="loading" class="loading" style="display: none;">
+            Processando...
+        </div>
+
+        <div id="error" class="error" style="display: none;"></div>
+
+        <div id="result">
+            <canvas id="canvas"></canvas>
+        </div>
+
+        <div class="footer">
+            Fonte gerada por <a href="https://habbofont.net" target="_blank">HabboFont.net</a> ❤️
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
