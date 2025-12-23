@@ -15,6 +15,20 @@
             <input type="text" id="textInput" placeholder="Ex: habbo" value="habbo hotel">
         </div>
 
+        <div class="diagonal-selector">
+            <label>Escolha a direção da diagonal:</label>
+            <div class="radio-group">
+                <div class="radio-option">
+                    <input type="radio" id="primary" name="diagonal" value="primary" checked>
+                    <label for="primary">↗️ Diagonal Principal<br>(da esquerda para cima)</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="secondary" name="diagonal" value="secondary">
+                    <label for="secondary">↘️ Diagonal Secundária<br>(da esquerda para baixo)</label>
+                </div>
+            </div>
+        </div>
+
         <button onclick="generateDiagonal()">Gerar Diagonal</button>
 
         <div id="loading" class="loading" style="display: none;">
@@ -28,7 +42,8 @@
         </div>
 
         <div class="footer">
-            Fonte gerada por <a href="https://habbofont.net" target="_blank">HabboFont.net</a> ❤️
+            <p><strong>Diagonal Principal:</strong> Fonte gerada por <a href="https://habbofont.net" target="_blank">HabboFont.net</a> ❤️</p>
+            <p><strong>Diagonal Secundária:</strong> Criada graças ao trabalho de <a href="https://x.com/GustavoReiPanda" target="_blank">GuReiPanda</a> 🎨</p>
         </div>
     </div>
 

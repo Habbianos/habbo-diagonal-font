@@ -32,6 +32,54 @@ input[type="text"] {
 	font-size: 16px;
 	box-sizing: border-box;
 }
+
+.diagonal-selector {
+	margin-bottom: 20px;
+	padding: 20px;
+	background: #f8f9fa;
+	border-radius: 8px;
+}
+
+.diagonal-selector label {
+	margin-bottom: 12px;
+}
+
+.radio-group {
+	display: flex;
+	gap: 20px;
+}
+
+.radio-option {
+	flex: 1;
+	position: relative;
+}
+
+.radio-option input[type="radio"] {
+	position: absolute;
+	opacity: 0;
+}
+
+.radio-option label {
+	display: block;
+	padding: 15px;
+	background: white;
+	border: 2px solid #e0e0e0;
+	border-radius: 8px;
+	text-align: center;
+	cursor: pointer;
+	transition: all 0.3s;
+	font-weight: 500;
+}
+
+.radio-option input[type="radio"]:checked + label {
+	background: #667eea;
+	color: white;
+	border-color: #667eea;
+}
+
+.radio-option label:hover {
+	border-color: #667eea;
+}
 button {
 	width: 100%;
 	padding: 12px;
