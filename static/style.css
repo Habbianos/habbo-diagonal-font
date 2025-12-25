@@ -1,135 +1,203 @@
-body {
-	font-family: Arial, sans-serif;
-	max-width: 800px;
-	margin: 50px auto;
-	padding: 20px;
-	background: #f0f0f0;
+@font-face {
+	font-family: Habbo Ubuntu;
+	src: url("./font/Ubuntu.ttf");
 }
-.container {
-	background: white;
-	padding: 30px;
-	border-radius: 10px;
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-h1 {
-	color: #333;
-	text-align: center;
-}
-.input-group {
-	margin: 20px 0;
-}
-label {
-	display: block;
-	margin-bottom: 5px;
-	font-weight: bold;
-	color: #555;
-}
-input[type="text"] {
-	width: 100%;
-	padding: 10px;
-	border: 2px solid #ddd;
-	border-radius: 5px;
-	font-size: 16px;
+
+* {
 	box-sizing: border-box;
+	outline: none;
+	image-rendering: pixelated;
+	image-rendering: crisp-edges;
+	transition: background-color 0.3s, border 0.3s, color 0.3s;
 }
 
-.diagonal-selector {
-	margin-bottom: 20px;
-	padding: 20px;
-	background: #f8f9fa;
-	border-radius: 8px;
-}
-
-.diagonal-selector label {
-	margin-bottom: 12px;
-}
-
-.radio-group {
-	display: flex;
-	gap: 20px;
-}
-
-.radio-option {
-	flex: 1;
-	position: relative;
-}
-
-.radio-option input[type="radio"] {
-	position: absolute;
-	opacity: 0;
-}
-
-.radio-option label {
-	display: block;
-	padding: 15px;
-	background: white;
-	border: 2px solid #e0e0e0;
-	border-radius: 8px;
+body {
+	font-family: Habbo Ubuntu, sans-serif;
 	text-align: center;
-	cursor: pointer;
-	transition: all 0.3s;
-	font-weight: 500;
+	background-image: url(img/br_background_office_928x1360_001.png), url(img/bg_ltribe_jungle_2_sky.png);
+	background-size: auto;
+	background-position: center 0;
+	background-repeat: no-repeat, repeat-x;
+	background-color: #cba94c;
+	padding-top: 230px;
+	min-height: 1360px;
+	margin: 0;
 }
 
-.radio-option input[type="radio"]:checked + label {
-	background: #667eea;
-	color: white;
-	border-color: #667eea;
+section {
+	width: 738px;
+	padding: 5px;
+	margin: 5px auto;
+	background-color: rgb(231 102 0);
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	border-radius: 5px;
+	overflow: hidden;
 }
 
-.radio-option label:hover {
-	border-color: #667eea;
+section > header,
+section > main {
+	padding: 5px;
+	margin-bottom: 5px;
+	background-color: rgb(255 207 0);
+	border-radius: 5px;
+	overflow: hidden;
 }
-button {
+
+section > main {
+	margin: 0;
+	display: flex;
+	gap: 5px;
+}
+
+h3 {
+	margin: 0;
+	color: #444;
+	font-weight: 100;
+}
+
+main > div[id] {
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	padding: 5px;
+	overflow: hidden;
+}
+
+main > div[id] fieldset {
+	line-height: 1.5em;
+	display: inline-block;
+	border: 1px solid grey;
+	border-radius: 3px;
+	padding: 5px;
+}
+
+main > div[id] fieldset legend {
+	text-align: left;
+}
+
+div#settings {
+	width: 316px;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+#inputText input[type="text"] {
 	width: 100%;
-	padding: 12px;
-	background: #ff6b35;
+	padding: 5px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+}
+
+#inputText input[type="text"]:focus-within {
+	outline: 2px solid #39b;
+	outline-offset: 2px;
+	border-radius: 2px;
+}
+
+#diagonal input[type="radio"] {
+	-webkit-appearance: none;
+	cursor: pointer;
+	background-origin: content-box;
+	background-size: 12px;
+	background-repeat: no-repeat;
+	padding: 1px;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	width: 34px;
+	height: 30px;
+	color: transparent;
+	background-size: 34px;
+	box-sizing: content-box;
+	padding: 3px;
+}
+
+#diagonal input[type="radio"]:hover {
+	background-color: #ddd;
+	border-color: #bbb;
+}
+
+#diagonal input[type="radio"]:checked {
+	outline: 2px solid #39b;
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+#diagonal input[value="primary"] {
+	background-image: url(/static/img/up-right.png);
+}
+
+#diagonal input[value="secondary"] {
+	background-image: url(/static/img/down-right.png);
+}
+
+#actions input[type="button"] {
+	width: 275px;
+	height: 34px;
+	background-color: #ff6b35;
 	color: white;
 	border: none;
-	border-radius: 5px;
-	font-size: 16px;
+	border-radius: 3px;
+	font-size: 14px;
 	cursor: pointer;
 	font-weight: bold;
 }
-button:hover {
-	background: #ff5520;
+
+#actions input[type="button"]:hover {
+	background-color: #ff5520;
 }
-button:disabled {
-	background: #ccc;
+
+#actions input[type="button"]:disabled {
+	background-color: #ccc;
 	cursor: not-allowed;
 }
-#canvas {
-	display: none;
-	margin: 20px auto;
-	border: 2px solid #ddd;
-}
-#result {
-	margin-top: 20px;
-	text-align: center;
-}
+
 .loading {
 	text-align: center;
 	color: #666;
-	margin: 20px 0;
+	padding: 10px;
+	font-size: 12px;
 }
+
 .error {
 	color: #d32f2f;
 	padding: 10px;
 	background: #ffebee;
-	border-radius: 5px;
-	margin: 10px 0;
+	border-radius: 3px;
+	margin: 5px 0;
+	font-size: 12px;
 }
 
-.footer {
+div#preview {
+	position: relative;
+	width: 395px;
+	max-height: 500px;
+	background-image: url(./img/piso.png);
+	background-position: center;
+	background-repeat: repeat;
 	text-align: center;
-	margin-top: 30px;
-	padding-top: 20px;
-	border-top: 2px solid #eee;
-	color: #666;
-	font-size: 14px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+    overflow: auto;
 }
-.footer a {
-	color: #ff6b35;
-	text-decoration: none;
-	font-weight: bold;
+
+#canvas {
+	display: block;
+	margin: auto;
+	cursor: pointer;
+}
+
+footer {
+	width: 738px;
+	margin: 0 auto;
+	background-color: rgb(0 0 0 / 0.5);
+	color: white;
+	padding: 1px 10px;
+	border-radius: 5px;
+	border: 1px solid rgba(0 0 0 / 0.5);
+}
+footer a {
+	color: white;
 }

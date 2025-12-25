@@ -1,3 +1,8 @@
+const loadingDiv = document.getElementById('loading');
+const errorDiv = document.getElementById('error');
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
 const SECONDARY_DIAGONAL_CHARS = new Map([
 	['a', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAApCAYAAABQgPsBAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDYuMC1jMDA2IDc5LjE2NDc1MywgMjAyMS8wMi8xNS0xMTo1MjoxMyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIyLjMgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjVCODVDQUE2REZFMDExRjA5QzQyOEIzOEFBMjc3NzA1IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjVCODVDQUE3REZFMDExRjA5QzQyOEIzOEFBMjc3NzA1Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NUI4NUNBQTRERkUwMTFGMDlDNDI4QjM4QUEyNzc3MDUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NUI4NUNBQTVERkUwMTFGMDlDNDI4QjM4QUEyNzc3MDUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7+w2q4AAABL0lEQVR42uzYbQ7CIAwGYEq4hMfYpTyUl9oxPAbKEpbJyqQv7XCJTfxhdMuz8tFRijE6aRDR7qL3fch1REAAz3v9NxRELRk5ApRxe2AZOoRIAL0gFtIDQEEfEG4SamBaQCskIeLM/GHSB3GYBVJDWIE4DC3ZmgWzWwlUYsQQTdAWE9CbZLxWhnzveCdQ+uRVIYmEzyvVO6VAMVBG8jBoYnJWvASxXDTZZMZD4zo59fDOIJCsmEB+JiNIVsSQniWqBkkIrSoMv7OWW/owSAm6zGT9Q06FWE1UEaS16J02NJcqetA+kl5e1wP0PBCyPX2NBAWuxzECxG7xNZBV5f1aa3ag4vvpRa+3LWW6fLX2kjzc0JFTY1KX/ZLQ8zQIqNawCRrpbQE1d4w0A+nDvgQYAFRpxOPcyZxdAAAAAElFTkSuQmCC'],
 	['b', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAqCAYAAADWFImvAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDYuMC1jMDA2IDc5LjE2NDc1MywgMjAyMS8wMi8xNS0xMTo1MjoxMyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIyLjMgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjY3NkE3ODA5REZFMDExRjBBN0M5QzZBMjAxQjU2MDJCIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjY3NkE3ODBBREZFMDExRjBBN0M5QzZBMjAxQjU2MDJCIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6Njc2QTc4MDdERkUwMTFGMEE3QzlDNkEyMDFCNTYwMkIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6Njc2QTc4MDhERkUwMTFGMEE3QzlDNkEyMDFCNTYwMkIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz42xJ2QAAABe0lEQVR42tTYUQ7CIAwAUCG7hHfwRw/lobzUvky8gadQXLcVGQJrod0iiYlbmHtUWtiMc+5QasYY32Hoaw5KrVsDPK+/5zRAJo5IChC3400+Qh5CAWiC4AfYAA3QCGlBSIF8RFqj0goaIa6fD877gRYQf3IHUBKiCcphihANUA5DgkiDUhgWRBIUY6ogUqAQ0wSRACHGSmQDDAQ+mKY1zVJHjKPOa+owEEVYcC3rgjMtOjWRsWy9EkZkjkg0NQg3KpaTZhoN07ejji6sF9KI4i6+BNLYFnRbTkgEYAWG+lEVkVIxi4/N5XvDGMB6wEqtJeTtwoxYA2BVJU/WsJhRN1GA4CyC4pUVoVQEe635y8qqutZoVVZW1tRUVrgG+lPnSgep49979NtU1mxE/AaWCJKttubu3Pu0+Gu2BiEiO0e0QQCY7jMhVierNCgF4GVNBSjMmBLA9197vZm8KAVy8+NagKAAmiBJ0AyZag0dIAKJQK/h24MLwPYRYABnVR/sVI5aUwAAAABJRU5ErkJggg=='],
@@ -30,10 +35,6 @@ const SECONDARY_DIAGONAL_CHARS = new Map([
 async function generateDiagonal() {
 	const text = document.getElementById('textInput').value.trim();
 	const diagonalType = document.querySelector('input[name="diagonal"]:checked').value;
-	const loadingDiv = document.getElementById('loading');
-	const errorDiv = document.getElementById('error');
-	const canvas = document.getElementById('canvas');
-	const ctx = canvas.getContext('2d');
 
 	// Reset
 	errorDiv.style.display = 'none';
@@ -45,7 +46,7 @@ async function generateDiagonal() {
 	}
 
 	loadingDiv.style.display = 'block';
-console.log({diagonalType})
+
 	try {
 		if (diagonalType === 'primary') {
 			await generatePrimaryDiagonal(text, canvas, ctx, loadingDiv);
@@ -316,5 +317,11 @@ document.getElementById('textInput').addEventListener('keypress', function(e) {
 		generateDiagonal();
 	}
 });
+
+canvas.addEventListener('click', function () {
+  const imageDataUrl = canvas.toDataURL('image/png');
+  const newTab = window.open();
+  newTab.document.write('<img src="' + imageDataUrl + '" alt="Canvas Image"/>');
+})
 
 generateDiagonal();
